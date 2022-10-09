@@ -1,22 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState ,createContext} from 'react'
-import {ProductContxt,CartProudectContext} from '../App'
+import {ProductContxt,CartProduectContext} from '../App'
 import '../style/Header.css' 
 import '../style/Cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingBag,faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faShoppingBag, faTrash } from "@fortawesome/free-solid-svg-icons"
 const Cartcontext = createContext(false)
-function Cart({value}) {
-  const { clicked, setClicked } = useContext(ProductContxt);
+function Cart() {
+  const { noOfClicks,setNoOfClicks } = useContext(ProductContxt);
   const { cartState, setCart } = useContext(Cartcontext);
-  const { cartProudect, setCartProudect } = useContext(CartProudectContext)
+  const { cartProduect, setCartProduect } = useContext(CartProduectContext)
   let total = 0
-  const price = cartProudect.map((e) => e.price)
+  const price = cartProduect.map((e) => e.price)
   price.forEach(item=>total+=item)
-  let style={}
-  clicked?style={height:'380px'}:style={height:'0px'}
-  const Cartproudcts = cartProudect?.map((e) =>
+  let style = noOfClicks?{height:'380px'}:{height:'0px'}
+  const Cartproducts = cartProduect?.map((e) =>
   <div key={e.id} className="cartProudect_dev">
     <img src={e.image} width="120px"/>
     <div className='info'>
@@ -25,40 +24,39 @@ function Cart({value}) {
     </div>
   </div>
   )
+  
   return (
     cartState?<div className='cart'>
       <div className='continer'>
         <div className='cart_div'>
-          <p className='cart_p1'>Your cart({clicked})</p>
+          <p className='cart_p1'>Your cart({noOfClicks})</p>
           <button className='cart_btn1'  onClick={()=>{setCart(false)}}>close</button>
         </div>
-        {clicked?null:<FontAwesomeIcon icon={faShoppingBag} className='cart_icon' />}
+        {noOfClicks?null:<FontAwesomeIcon icon={faShoppingBag} className='cart_icon' />}
         <div className='cartProudect' style={style}>
-          {Cartproudcts}
-          {clicked ? <FontAwesomeIcon icon={faTrash} className='cart_icon2' onClick={() => { setCartProudect([]); setClicked(0)}} />:null}
+          {Cartproducts}
+          {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2' onClick={() => { setCartProduect([]); setNoOfClicks(0)}} />:null}
         </div>
-        {clicked === 0 ? <p className='cart_p2'>Your cart is embty</p> : null}
-        {clicked ? null : <button className='cart_btn2'>Check our site</button>}
-        {clicked?<p className='cart_total'>Total:${total}</p>:null}
-        {clicked ? <button className='cart_btn2'>Checkout</button> : null}
+        {noOfClicks === 0 ? <p className='cart_p2'>Your cart is embty</p> : null}
+        {noOfClicks ? null : <button className='cart_btn2'>Check our site</button>}
+        {noOfClicks?<p className='cart_total'>Total:${total}</p>:null}
+        {noOfClicks ? <button className='cart_btn2'>Checkout</button> : null}
       </div>
       <div className='layaout' onClick={()=>{setCart(false)}}></div>
     </div>:null
   )
 }
-function IamgeCombonant() {
-  return (
-    <>
-      <div className='image'><div>Men</div></div>
-    </>
-  )
-}
-
 function Header() {
-  const { clicked, setClicked } = useContext(ProductContxt);
-  const [cartState,setCart] =useState(false)
+  const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
+  const [cartState, setCart] = useState(false)
+  const Header_link = [{ link: 'Weekend Boots', id: '1' },
+    { link: 'Terrus Clogs', id: '2' },
+    { link: 'Accessories', id: "3" }, {link:'Values',id:'4'}, {link:'Archive Sale',id:'5'}, {link:'New',id:'6'}]
   return (
     <>
+    <div className='mainhead' >
+      <p>Free shipping + exchanges over $100.</p>
+    </div>
     <div className='header'>
       <div className='logo'>
         <img
@@ -67,19 +65,15 @@ function Header() {
         />
         </div>
       <div className='links' >
-        <p className='Header_link '>Weekend Boots</p>
-        <p className='Header_link '>Terrus Clogs</p>
-        <p className='Header_link '>Accessories</p>
-        <p className='Header_link '>Values </p>
-        <p className='Header_link '> Archive Sale</p>
+          {Header_link.map((e) => <p className='Header_link' key={e.id}>{ e.link}</p>)}
       </div>
         <div className='icon'>
-        <span className='Header_count'>{clicked}</span>
+        <span className='Header_count'>{noOfClicks}</span>
           <FontAwesomeIcon icon={faShoppingBag} onClick={()=>{setCart(true)}}  />
       </div>
       </div>
       <Cartcontext.Provider value={{cartState,setCart}}>
-        <IamgeCombonant />
+      <div className='image'><div>Men</div></div>
         <Cart />
       </Cartcontext.Provider>
     </>

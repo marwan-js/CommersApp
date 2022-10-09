@@ -53,3 +53,17 @@ transform: translate(-50%,50%)
    justify-content: center;
    align-items: center;
 }
+.mainhead{
+   background-attachment: fixed;
+   text-align: center;
+   background-color: #123026;
+   color:white;
+   height:50px ;
+   box-sizing: border-box;
+   padding-top: 15px;
+}
+.mainhead p{
+   color:white;
+   margin-top: auto;
+   font-size: 20px;
+}

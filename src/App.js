@@ -1,24 +1,22 @@
 /* eslint-disable react/jsx-pascal-case */
 import './App.css';
 import { useState ,createContext} from 'react';
-import Main_head from './components/Main_head';
 import Header from './components/Header'
 import Proudects from './components/Proudects';
 import Footer from './components/Footer';
 export const ProductContxt = createContext(0)
-export const CartProudectContext = createContext([])
+export const CartProduectContext = createContext([])
 function App() {
-  const [clicked, setClicked] = useState(0)
-  const [cartProudect,setCartProudect] = useState([])
+  const [noOfClicks,setNoOfClicks] = useState(0)
+  const [cartProduect,setCartProduect] = useState([])
   return (
     <div className="App" >
-      <ProductContxt.Provider value={{ clicked, setClicked }}>
-        <CartProudectContext.Provider value={{cartProudect,setCartProudect}}>
-          <Main_head />
+      <ProductContxt.Provider value={{ noOfClicks, setNoOfClicks }}>
+        <CartProduectContext.Provider value={{cartProduect,setCartProduect}}>
           <Header />
           <Proudects />
           <Footer />
-          </CartProudectContext.Provider>
+          </CartProduectContext.Provider>
       </ProductContxt.Provider>
       </div>
   );

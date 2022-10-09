@@ -1,20 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState,useContext } from 'react'
-import { ProductContxt,CartProudectContext } from '../App'
+import { ProductContxt,CartProduectContext } from '../App'
 import axios from 'axios'
 import '../style/Products.css'
 function Proudects() {
-    const [products, SetData] = useState();
-    const { clicked, setClicked } = useContext(ProductContxt);
-    const {cartProudect,setCartProudect} = useContext(CartProudectContext)
+    const [products, setProducts] = useState();
+    const {  noOfClicks,setNoOfClicks } = useContext(ProductContxt);
+    const {cartProduect,setCartProduect} = useContext(CartProduectContext)
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
             .then((res) => {
-                SetData(res.data)
+                setProducts(res.data)
             })
-            .catch((err) => SetData(err))
+            .catch((err) => setProducts(err))
     }, [])
-    const jsx = products?.map((e) =>
+    const Products = products?.map((e) =>
         <div key={e.id} className='pro' >
             <img src={e.image} className='pro_image'/>
             <div className='pro_contain'>
@@ -23,14 +24,14 @@ function Proudects() {
                 <h3 className='pro_title'>{e.title}</h3>
                 <span className='pro_price'>${e.price}</span>
                 <button className='pro_btn' onClick={() => {
-                    setClicked(prev => prev + 1);
-                    setCartProudect(prev => [...prev,{id:e.id,image:e.image, title:e.title, price:e.price}])
+                    setNoOfClicks(prev => prev + 1);
+                    setCartProduect(prev => [...prev,{id:e.id,image:e.image, title:e.title, price:e.price}])
                 }}>Add to cart</button>
             </div>
         </div>);
 return (
     <div className='products'>
-        {jsx}
+        {Products}
     </div>
 )
 }
