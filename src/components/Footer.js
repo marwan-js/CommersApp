@@ -2,6 +2,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import '../style/Footer.css'
+import '../constants'
+import { aboutus, getintouch, help, ourshop } from '../constants'
+const sec_ourshop = ['The Weekend Boot Z', 'The Weekend ', 'The Weekend Boot Y', 'The Weekend Boot T']
+const sec_help=['Size Guides','Shipping Information ','Refund Policy','Wear, Care and FAQ']
+const sec_aboutus=['Values','Terms of Service ','Contact Us','We are the pest']
 function Footer() {
 return (
     <div className='footer'>
@@ -10,28 +15,19 @@ return (
             <p>&copy;2021 Thesus</p>
         </div>
         <div className='col_2 col'>
-            <h1>Our Shop</h1>
-            <a>The Weekend Boot Z</a>
-            <a>The Weekend </a>
-            <a>The Weekend Boot Y</a>
-            <a>The Weekend Boot T</a>
+            <h1>{ourshop }</h1>
+            {sec_ourshop.map(e => <a>{e}</a>)}
         </div>
         <div className='col_3 col'>
-            <h1>Help</h1>
-            <a>Size Guides</a>
-            <a>Shipping Information</a>
-            <a>Refund Policy</a>
-            <a>Wear, Care and FAQ</a>
+            <h1>{ help}</h1>
+            {sec_help.map(e => <a>{e}</a>)}
         </div>
         <div className='col_4 col'>
-            <h1>About Us</h1>
-            <a>Values</a>
-            <a>Terms of Service</a>
-            <a>Contact Us</a>
-            <a>We're</a>
+            <h1>{aboutus }</h1>
+            {sec_aboutus.map(e => <a>{e}</a>)}
         </div>
         <div className='col_5 col'>
-            <h1>Get In Touch</h1>
+            <h1>{getintouch }</h1>
             <p>Get In TouchCall us at 1 - 800 - 475 - 6479 or {<br/>}  email {<br/>} marwanamgad19@gmail.com</p>
 
         </div>

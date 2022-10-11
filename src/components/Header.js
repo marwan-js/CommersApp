@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState ,createContext} from 'react'
-import {ProductContxt,CartProduectContext} from '../App'
+import { ProductContxt, CartProduectContext } from '../App'
+import Cartproduct from './Cartproduct'
 import '../style/Header.css' 
 import '../style/Cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,16 +16,6 @@ function Cart() {
   const price = cartProduect.map((e) => e.price)
   price.forEach(item=>total+=item)
   let style = noOfClicks?{height:'380px'}:{height:'0px'}
-  const Cartproducts = cartProduect?.map((e) =>
-  <div key={e.id} className="cartProudect_dev">
-    <img src={e.image} width="120px"/>
-    <div className='info'>
-      <h3 className='cartProudect_h3'>{e.title}</h3>
-      <p className='cartProudect_p'>${e.price}</p>
-    </div>
-  </div>
-  )
-  
   return (
     cartState?<div className='cart'>
       <div className='continer'>
@@ -34,7 +25,7 @@ function Cart() {
         </div>
         {noOfClicks?null:<FontAwesomeIcon icon={faShoppingBag} className='cart_icon' />}
         <div className='cartProudect' style={style}>
-          {Cartproducts}
+          {cartProduect?.map((e) => <Cartproduct id={e.id} image={e.image} title={e.title} price={e.price} />)}
           {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2' onClick={() => { setCartProduect([]); setNoOfClicks(0)}} />:null}
         </div>
         {noOfClicks === 0 ? <p className='cart_p2'>Your cart is embty</p> : null}
