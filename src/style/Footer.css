@@ -1,0 +1,27 @@
+.footer{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    background-color: #123026;
+}
+.col {
+    color:white;
+    margin: 50px 15px 50px 15px;
+}
+.col h1{
+    font-size: 20px;
+}
+.col a{
+    display: block;
+    font-size: 15px;
+    opacity: 0.6;
+    margin: 15px 0 15px 0;
+}
+.col p{
+font-size: 17px;
+}
+.col_1 p{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-left: 10px;
+}
