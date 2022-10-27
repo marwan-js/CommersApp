@@ -15,6 +15,7 @@ function App() {
   const [single, setSingleProduct] = useState([])
   return ( 
     <div className="App" >
+      <Link to={"/pro"}>marwan</Link>
       <ProductContxt.Provider value={{ noOfClicks, setNoOfClicks }}>
         <CartProduectContext.Provider value={{ cartProduect, setCartProduect }}>
           <ProductPageContext.Provider value={{ single, setSingleProduct }}>
