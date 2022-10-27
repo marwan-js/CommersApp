@@ -15,7 +15,7 @@ function SinglePage({ id, image, title, description, price, rating, }) {
             <div className='info-div'>
                 <h1>{title}</h1>
                 <p className='description'>{description}</p>
-                <p className='price'>{price}</p>
+                <p className='price'>${price}</p>
                 <span className='rate'>{rating.rate}</span>
                 <span className='count'>{rating.count} reviews</span>
                 <div className='btns'>
