@@ -1,0 +1,71 @@
+.single {
+  padding: 70px;
+}
+.single .single-container {
+  display: flex;
+}
+.single .single-container .img-div {
+  width: 40%;
+}
+.single .single-container .img-div .color {
+  background-color: black;
+  width: 400px;
+  height: 20px;
+  display: block;
+  margin-bottom: 60px;
+}
+.single .single-container .img-div img {
+  width: 400px;
+}
+.single .single-container .info-div {
+  width: 60%;
+}
+.single .single-container .info-div h1 {
+  color: #123026;
+  font-size: 45px;
+}
+.single .single-container .info-div .description {
+  font-size: 25px;
+}
+.single .single-container .info-div .price {
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+.single .single-container .info-div .rate {
+  display: block;
+  color: goldenrod;
+  font-size: 30px;
+}
+.single .single-container .info-div .count {
+  display: block;
+  font-size: 15px;
+}
+.single .single-container .info-div .btns {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.single .single-container .info-div .btns .btn2 {
+  margin: auto;
+  align-self: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background-color: #123026;
+  width: 40%;
+  font-size: 20px;
+  cursor: pointer;
+}
+.single .btn1 {
+  margin: 30px;
+  align-self: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background-color: #123026;
+  width: 40%;
+  font-size: 20px;
+  cursor: pointer;
+}/*# sourceMappingURL=SingleProduct.css.map */

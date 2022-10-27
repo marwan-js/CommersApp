@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState ,createContext} from 'react'
-import { ProductContxt, CartProduectContext } from '../App'
+import { ProductContxt, CartProduectContext, } from '../App'
 import Cartproduct from './Cartproduct'
 import '../style/Header.css' 
 import '../style/Cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { NavLink, Route, Routes } from 'react-router-dom'
 const Cartcontext = createContext(false)
 function Cart() {
   const { noOfClicks,setNoOfClicks } = useContext(ProductContxt);
@@ -40,7 +41,7 @@ function Cart() {
 function Header() {
   const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
   const [cartState, setCart] = useState(false)
-  const Header_link = [{ link: 'Weekend Boots', id: '1' },
+  const Header_link = [{ link: 'Weekend Boots', id: '1',herf:"/" },
     { link: 'Terrus Clogs', id: '2' },
     { link: 'Accessories', id: "3" }, {link:'Values',id:'4'}, {link:'Archive Sale',id:'5'}, {link:'New',id:'6'}]
   return (
@@ -56,7 +57,10 @@ function Header() {
         />
         </div>
       <div className='links' >
-          {Header_link.map((e) => <p className='Header_link' key={e.id}>{ e.link}</p>)}
+          {Header_link.map((e) => <NavLink style={{
+            textDecoration: 'none',
+            color:'black',
+          }} to={e.herf}><p className='Header_link' key={e.id}>{e.link}</p></NavLink>)}
       </div>
         <div className='icon'>
         <span className='Header_count'>{noOfClicks}</span>
@@ -64,7 +68,7 @@ function Header() {
       </div>
       </div>
       <Cartcontext.Provider value={{cartState,setCart}}>
-      <div className='image'><div>Men</div></div>
+        <Routes><Route path='/' element={<div className='image'><div>Men</div></div>} /></Routes>
         <Cart />
       </Cartcontext.Provider>
     </>

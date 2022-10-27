@@ -20,6 +20,7 @@
     width: 5%;
     margin: 45px 10px 0 10px;
     float: right;
+    cursor: pointer;
    }
  .icon:hover{
     color: #123026;

@@ -22,3 +22,9 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
   }
+  a{
+    cursor: pointer;
+  }
+  Link{
+    color: #b30000;
+  }
