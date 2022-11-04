@@ -10,31 +10,36 @@ export const ProductContxt = createContext(0)
 export const CartProduectContext = createContext([])
 export const ProductPageContext = createContext([])
 export const QuantityContext = createContext(0)
+export const CountContext = createContext(0)
+export const Cartcontext = createContext(false)
 function App() {
   const [noOfClicks,setNoOfClicks] = useState(0)
   const [cartProduect, setCartProduect] = useState([])
   const [single, setSingleProduct] = useState([])
   const [quantity, setQuantityt] = useState(1)
+  const [cartState, setCart] = useState(false)
   return ( 
     <div className="App" >
       <ProductContxt.Provider value={{ noOfClicks, setNoOfClicks }}>
         <CartProduectContext.Provider value={{ cartProduect, setCartProduect }}>
           <ProductPageContext.Provider value={{ single, setSingleProduct }}>
-            <QuantityContext.Provider value={{quantity,setQuantityt}}>
-              <Header />
-                <Routes>
-                  <Route path='/'
-                    element={
-                      <>
-                        <Proudects  />
-                        <Footer />
-                    </>
-                  } />
-                <Route path='/pro' element={<>
-                  <Product />
-                </>} />
-                  
-              </Routes>
+            <QuantityContext.Provider value={{ quantity, setQuantityt }}>
+            <Cartcontext.Provider value={{cartState,setCart}}>
+                <Header />
+                  <Routes>
+                    <Route path='/'
+                      element={
+                        <>
+                          <Proudects  />
+                          <Footer />
+                      </>
+                    } />
+                  <Route path='/pro' element={<>
+                    <Product />
+                  </>} />
+                    
+                </Routes>
+                </Cartcontext.Provider>
             </QuantityContext.Provider>
           </ProductPageContext.Provider>
         </CartProduectContext.Provider>

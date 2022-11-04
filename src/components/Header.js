@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useContext, useState ,createContext} from 'react'
-import { ProductContxt, CartProduectContext,QuantityContext } from '../App'
+import React, { useContext, useState ,createContext, useEffect} from 'react'
+import { ProductContxt, CartProduectContext,QuantityContext,Cartcontext } from '../App'
 import Cartproduct from './Cartproduct'
 import '../style/Header.css' 
 import '../style/Cart.css'
@@ -9,17 +9,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBag, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { NavLink, Route, Routes } from 'react-router-dom'
 import {Header_link} from "../constants"
-const Cartcontext = createContext(false)
 function Cart() {
   const { noOfClicks,setNoOfClicks } = useContext(ProductContxt);
   const { cartState, setCart } = useContext(Cartcontext);
   const { cartProduect, setCartProduect } = useContext(CartProduectContext)
-  const {quantity,setQuantityt} =useContext(QuantityContext)
   let total = 0
-  const price = cartProduect.map((e) => e.price)
-  // const price2 = price.map(e=>e.price)
-  price.forEach(item=>total+=item)
+  const price = cartProduect.map((e) =>e.map((i)=>i.price))
+  price.map(e=>e.forEach(item=>total+=item))
   let style = noOfClicks ? { height: '380px' } : { height: '0px' }
+
   console.log(cartProduect)
   return (
     cartState?<div className='cart'>
@@ -30,9 +28,11 @@ function Cart() {
         </div>
         {noOfClicks?null:<FontAwesomeIcon icon={faShoppingBag} className='cart_icon' />}
         <div className='cartProudect' style={style}>
-          {cartProduect?.map((i) => <Cartproduct
-            id={i.id} image={i.image} title={i.title} price={i.price} quantity={i.quantity} color={i.color}
-          />
+          {cartProduect?.map((i) => 
+            i.map((w) => <Cartproduct
+              id={w.id} image={w.image} title={w.title} price={w.price}
+              quantity={w.quantity} color={w.color}
+              array={i} smallArray={w} />)
           )}
           {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2'
             onClick={() => { setCartProduect([]); setNoOfClicks(0) }} /> : null}
@@ -48,7 +48,7 @@ function Cart() {
 }
 function Header() {
   const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
-  const [cartState, setCart] = useState(false)
+  const { cartState, setCart } = useContext(Cartcontext);
   return (
     <>
     <div className='mainhead' >
@@ -72,10 +72,8 @@ function Header() {
           <FontAwesomeIcon icon={faShoppingBag} onClick={()=>{setCart(true)}}  />
       </div>
       </div>
-      <Cartcontext.Provider value={{cartState,setCart}}>
         <Routes><Route path='/' element={<div className='image'><div>Men</div></div>} /></Routes>
         <Cart />
-      </Cartcontext.Provider>
     </>
   )
 }

@@ -1,20 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
-import React,{useState,useContext, createContext, useEffect,} from 'react'
+import React,{useState,useContext, createContext, useEffect} from 'react'
 import { NavLink} from 'react-router-dom'
-import { ProductPageContext,CartProduectContext,ProductContxt,QuantityContext} from '../App'
+import { ProductPageContext,CartProduectContext,ProductContxt,QuantityContext,} from '../App'
 import '../style/SingleProduct.css'
 
 
 
-function SinglePage({ id, image, title, description, price, rating, color,c}) {
+
+function SinglePage({ id, image, title, description, price, rating, color,show,setShow}) {
     const { cartProduect, setCartProduect } = useContext(CartProduectContext)
     const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
     const [pickColor, setPickColor] = useState("black");
-    const [count, setCount] = useState(0)
-    const {quantity,setQuantityt} =useContext(QuantityContext)
+    const { quantity, setQuantityt } = useContext(QuantityContext);
+    const [clicked, setClicked] = useState(true)
+      
     return (
         <div key={id} className="single-container" >
             <div className='img-div'>
@@ -34,7 +37,7 @@ function SinglePage({ id, image, title, description, price, rating, color,c}) {
                         backgroundColor: e,
                     }}
                         onClick={() => {
-                        setPickColor(e)
+                            setPickColor(e)
                     }}
                 ></p>
                     )}</div>
@@ -51,23 +54,26 @@ function SinglePage({ id, image, title, description, price, rating, color,c}) {
                         }}
                         )} className='decrease'>-</span>
                     </div>
-                    <button className='btn2'
+                    {clicked ? <button className='btn2'
                         onClick={() => {
-                        setNoOfClicks(prev => prev + 1);
-                        setCartProduect
-                            (prev => [...prev,{
+                            setNoOfClicks(prev => prev + 1);
+                            setClicked(false)
+                            setCartProduect(prev => [...prev, [{
                                 id: id,
-                                image: image, title: title,
-                                price: price, quantity: quantity,color:pickColor
-                            }])
-                    }}
-                    >Add to Cart</button>
+                                image: image, title: title, price: price,
+                                quantity: quantity, color: pickColor, show: show,
+                            }]])
+                        }}
+                    >Add to Cart</button> : <button className='btn2'
+                            onClick={() => {
+                        }} >
+                        Add to Cart</button>}
                 </div>
             </div>
         </div>
     )
 }
-function Product({seQuantityt}) {
+function Product() {
     const { single, setSingleProduct } = useContext(ProductPageContext)
     if (single.length === 0) {
         window.location.assign("/")
@@ -76,7 +82,8 @@ function Product({seQuantityt}) {
         <div className='single'  >
             {single?.map((e) => <SinglePage id={e.id} image={e.image} title={e.title} 
                 description={e.description} price={e.price}
-                rating={e.rating} color={e.colors} c={e.quantity}
+                rating={e.rating} color={e.colors} c={e.quantity} 
+                show={e.show} 
             />)}
         </div>
 )   

@@ -11,7 +11,9 @@ function Proudects() {
     const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
     const { cartProduect, setCartProduect } = useContext(CartProduectContext)
     const { single, setSingleProduct } = useContext(ProductPageContext)
-    const {quantity,setQuantityt} =useContext(QuantityContext)
+    const { quantity, setQuantityt } = useContext(QuantityContext)
+    const [show , setShow] =useState(true)
+
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
             .then((res) => {
@@ -31,7 +33,7 @@ function Proudects() {
                         id: e.id,
                         image: e.image, description: e.description,
                         rating: e.rating, title: e.title, price: e.price,
-                        colors,quantity:quantity
+                        colors,quantity:quantity, show:show
                     }])
                     }} />
             </NavLink>
@@ -49,7 +51,7 @@ function Proudects() {
                             id: e.id,
                             image: e.image, description: e.description,
                             rating: e.rating, title: e.title, price: e.price,
-                            colors,quantity:quantity
+                            colors, quantity: quantity, show:show
                         }])
                     }}>Add to cart</button>
                 </NavLink>
