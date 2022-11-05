@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
+
 import React,{ useState,useContext } from 'react'
 import "../style/Cart.css"
 import {ProductContxt} from '../App'
