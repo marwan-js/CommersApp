@@ -11,13 +11,13 @@ import '../style/SingleProduct.css'
 
 
 
-function SinglePage({ id, image, title, description, price, rating, color,show,setShow}) {
+function SinglePage({ id, image, title, description, price, rating, color}) {
     const { cartProduect, setCartProduect } = useContext(CartProduectContext)
     const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
     const [pickColor, setPickColor] = useState("black");
     const { quantity, setQuantityt } = useContext(QuantityContext);
-    const [clicked, setClicked] = useState(true)
-      
+    
+
     return (
         <div key={id} className="single-container" >
             <div className='img-div'>
@@ -54,20 +54,16 @@ function SinglePage({ id, image, title, description, price, rating, color,show,s
                         }}
                         )} className='decrease'>-</span>
                     </div>
-                    {clicked ? <button className='btn2'
+                    <button className='btn2'
                         onClick={() => {
                             setNoOfClicks(prev => prev + 1);
-                            setClicked(false)
-                            setCartProduect(prev => [...prev, [{
-                                id: id,
-                                image: image, title: title, price: price,
-                                quantity: quantity, color: pickColor, show: show,
+                            setCartProduect((prev) =>[...prev, [{
+                                id: id,image: image, title: title, price: price,
+                                quantity: quantity, color: pickColor
                             }]])
-                        }}
-                    >Add to Cart</button> : <button className='btn2'
-                            onClick={() => {
-                        }} >
-                        Add to Cart</button>}
+                        }
+                        }>
+                    Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -90,3 +86,8 @@ function Product() {
 }
 
 export default Product
+// [...prev, [{
+//     id: id,
+//     image: image, title: title, price: price,
+//     quantity: quantity, color: pickColor, 
+// }]]

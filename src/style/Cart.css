@@ -78,11 +78,14 @@
 .cartProudect_p{
     font-size: 12px;
 }
+.cart_icon2{
+    margin-top: 25px;
+}
 .cart_icon2:hover{
     color: rgb(255, 32, 32);
 }
 .cart_total{
-    margin-top: 10%;
+    margin-top: 5%;
 
 }
 

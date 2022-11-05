@@ -34,9 +34,9 @@ function Cart() {
               quantity={w.quantity} color={w.color}
               array={i} smallArray={w} />)
           )}
-          {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2'
-            onClick={() => { setCartProduect([]); setNoOfClicks(0) }} /> : null}
         </div>
+        {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2'
+            onClick={() => { setCartProduect([]); setNoOfClicks(0) }} /> : null}
         {noOfClicks === 0 ? <p className='cart_p2'>Your cart is embty</p> : null}
         {noOfClicks ? null : <button className='cart_btn2'>Check our site</button>}
         {noOfClicks?<p className='cart_total'>Your Total Price Is:${total}</p>:null}
