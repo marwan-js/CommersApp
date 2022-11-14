@@ -94,6 +94,7 @@ function Header() {
           <FontAwesomeIcon icon={faShoppingBag} onClick={() => {
             setCart(true)
             setCartProduect(unique)
+            setNoOfClicks(unique.length)
           }} />
       </div>
       </div>

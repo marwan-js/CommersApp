@@ -17,7 +17,6 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
     const [pickColor, setPickColor] = useState("black");
     const { quantity, setQuantityt } = useContext(QuantityContext);
     const {unique,setUnique} = useContext(UniqueContext)
-
     return (
         <div key={id} className="single-container" >
             <div className='img-div'>
@@ -56,15 +55,10 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
                     </div>
                     <button className='btn2'
                         onClick={() => {
-                            setNoOfClicks(
-                                unique <= 0 ?
-                                unique.length + 1 :
-                                unique.length)
                             setCartProduect((prev) =>[...prev,{
                                 id: id,image: image, title: title, price: price,
                                 quantity: quantity, color: pickColor
                             }])
-
                         }
                         }>
                     Add to Cart</button>
@@ -75,9 +69,13 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
 }
 function Product() {
     const { single, setSingleProduct } = useContext(ProductPageContext)
+    const {unique,setUnique} = useContext(UniqueContext)
+    const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
+
     if (single.length === 0) {
         window.location.assign("/")
     }
+    setNoOfClicks(unique.length)
     return (
         <div className='single'  >
             {single?.map((e) => <SinglePage id={e.id} image={e.image} title={e.title} 
