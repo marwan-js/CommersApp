@@ -56,11 +56,15 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
                     </div>
                     <button className='btn2'
                         onClick={() => {
+                            setNoOfClicks(
+                                unique <= 0 ?
+                                unique.length + 1 :
+                                unique.length)
                             setCartProduect((prev) =>[...prev,{
                                 id: id,image: image, title: title, price: price,
                                 quantity: quantity, color: pickColor
                             }])
-                            setNoOfClicks(unique.length+1)
+
                         }
                         }>
                     Add to Cart</button>
