@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState,useContext,createContext } from 'react'
-import { ProductContxt,CartProduectContext,ProductPageContext,QuantityContext} from '../App'
+import { ProductContxt,CartProduectContext,ProductPageContext,QuantityContext,UniqueContext} from '../App'
 import axios from 'axios'
 import '../style/Products.css'
 import { NavLink } from 'react-router-dom';
@@ -13,6 +13,24 @@ function Proudects() {
     const { single, setSingleProduct } = useContext(ProductPageContext)
     const { quantity, setQuantityt } = useContext(QuantityContext)
     const [show , setShow] =useState(true)
+    const {unique,setUnique} =useContext(UniqueContext)
+
+
+
+    function getUnique(arr, index) {
+
+        const unique = arr
+             .map(e => e[index])
+      
+             // store the keys of the unique objects
+             .map((e, i, final) => final.indexOf(e) === i && i)
+        
+             // eliminate the dead keys & store unique objects
+            .filter(e => arr[e]).map(e => arr[e]);      
+      
+         return unique;
+      }
+
 
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
@@ -35,6 +53,7 @@ function Proudects() {
                         rating: e.rating, title: e.title, price: e.price,
                         colors,quantity:quantity, show:show
                     }])
+                    setCartProduect(unique)
                     }} />
             </NavLink>
             <div className='pro_contain'>
@@ -53,6 +72,7 @@ function Proudects() {
                             rating: e.rating, title: e.title, price: e.price,
                             colors, quantity: quantity, show:show
                         }])
+                        setCartProduect(unique)
                     }}>Add to cart</button>
                 </NavLink>
             </div>

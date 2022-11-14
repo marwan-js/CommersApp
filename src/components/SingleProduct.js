@@ -5,7 +5,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React,{useState,useContext, createContext, useEffect} from 'react'
 import { NavLink} from 'react-router-dom'
-import { ProductPageContext,CartProduectContext,ProductContxt,QuantityContext,} from '../App'
+import { ProductPageContext,CartProduectContext,ProductContxt,QuantityContext,UniqueContext} from '../App'
 import '../style/SingleProduct.css'
 
 
@@ -16,7 +16,7 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
     const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
     const [pickColor, setPickColor] = useState("black");
     const { quantity, setQuantityt } = useContext(QuantityContext);
-    
+    const {unique,setUnique} = useContext(UniqueContext)
 
     return (
         <div key={id} className="single-container" >
@@ -56,11 +56,11 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
                     </div>
                     <button className='btn2'
                         onClick={() => {
-                            setNoOfClicks(prev => prev + 1);
-                            setCartProduect((prev) =>[...prev, [{
+                            setCartProduect((prev) =>[...prev,{
                                 id: id,image: image, title: title, price: price,
                                 quantity: quantity, color: pickColor
-                            }]])
+                            }])
+                            setNoOfClicks(unique.length+1)
                         }
                         }>
                     Add to Cart</button>

@@ -3,13 +3,19 @@
 
 import React,{ useState,useContext } from 'react'
 import "../style/Cart.css"
-import {ProductContxt} from '../App'
+import {ProductContxt,UniqueContext,CartProduectContext} from '../App'
 
 function Cartproduct({ id, image, title, price, quantity, color,array}) {
     const [count, setCount] = useState(quantity)
-    const { noOfClicks,setNoOfClicks } = useContext(ProductContxt);
+    const {unique,setUnique} = useContext(UniqueContext)
+    const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
+    const { cartProduect, setCartProduect } = useContext(CartProduectContext)
+
+    console.log(array)
+    console.log(unique)
+    console.log(cartProduect)
     return (
-        <div key={id} className="cartProudect_dev">
+        <div key = { id } className = "cartProudect_dev">
             <img src={image} width="40%" />
             <div className='info'>
                 <h3 className='cartProudect_h3'>{title}</h3>
@@ -33,8 +39,9 @@ function Cartproduct({ id, image, title, price, quantity, color,array}) {
                     )}>-</p>
                 </div>
                 <p className='del' onClick={() => {
-                array.splice(0, 1)
-                setNoOfClicks(e =>e - 1)
+                    delete unique[array]
+                    setNoOfClicks(unique.length-1)
+                    setCartProduect(unique)
             }}>Delete</p>
             </div>
         </div>
