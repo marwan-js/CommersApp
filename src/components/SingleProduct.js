@@ -3,20 +3,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/alt-text */
-import React,{useState,useContext, createContext, useEffect} from 'react'
-import { NavLink} from 'react-router-dom'
-import { ProductPageContext,CartProduectContext,ProductContxt,QuantityContext,UniqueContext} from '../App'
+import React,{useState,useContext} from 'react'
+import {ProductContxt} from '../App'
 import '../style/SingleProduct.css'
 
 
 
-
-function SinglePage({ id, image, title, description, price, rating, color}) {
-    const { cartProduect, setCartProduect } = useContext(CartProduectContext)
-    const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
+function SinglePage({id, image, title, description, price, rating, color}) {
     const [pickColor, setPickColor] = useState("black");
-    const { quantity, setQuantityt } = useContext(QuantityContext);
-    const {unique,setUnique} = useContext(UniqueContext)
+    const {
+        noOfClicks, setNoOfClicks,
+        cartProduect, setCartProduect,
+        single, setSingleProduct, quantity, setQuantityt,
+        cartState, setCart,
+        unique, setUnique,
+        url, setUrl } = useContext(ProductContxt);
+    window.scroll(0, 200)    
     return (
         <div key={id} className="single-container" >
             <div className='img-div'>
@@ -68,9 +70,9 @@ function SinglePage({ id, image, title, description, price, rating, color}) {
     )
 }
 function Product() {
-    const { single, setSingleProduct } = useContext(ProductPageContext)
-    const {unique,setUnique} = useContext(UniqueContext)
-    const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
+    const { noOfClicks, setNoOfClicks, cartProduect, setCartProduect, single,
+        setSingleProduct, quantity, setQuantityt, cartState, setCart, unique,
+        setUnique, url, setUrl } = useContext(ProductContxt);
 
     if (single.length === 0) {
         window.location.assign("/")
@@ -88,8 +90,3 @@ function Product() {
 }
 
 export default Product
-// [...prev, [{
-//     id: id,
-//     image: image, title: title, price: price,
-//     quantity: quantity, color: pickColor, 
-// }]]

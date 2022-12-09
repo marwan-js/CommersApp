@@ -6,13 +6,7 @@ import Proudects from './components/Products';
 import Footer from './components/Footer';
 import Product from './components/SingleProduct';
 import {  Route, Routes,  } from 'react-router-dom';
-export const ProductContxt = createContext(0)
-export const CartProduectContext = createContext([])
-export const ProductPageContext = createContext([])
-export const QuantityContext = createContext(0)
-export const CountContext = createContext(0)
-export const Cartcontext = createContext(false)
-export const UniqueContext = createContext([])
+export const ProductContxt = createContext()
 function App() {
   const [noOfClicks,setNoOfClicks] = useState(0)
   const [cartProduect, setCartProduect] = useState([])
@@ -20,36 +14,34 @@ function App() {
   const [quantity, setQuantityt] = useState(1)
   const [cartState, setCart] = useState(false)
   const [unique, setUnique] = useState([])
-  
-  
+  const [url, setUrl] = useState()
+  console.log(url)
 
   return ( 
     <div className="App" >
-      <ProductContxt.Provider value={{ noOfClicks, setNoOfClicks }}>
-        <CartProduectContext.Provider value={{ cartProduect, setCartProduect }}>
-          <ProductPageContext.Provider value={{ single, setSingleProduct }}>
-            <QuantityContext.Provider value={{ quantity, setQuantityt }}>
-              <Cartcontext.Provider value={{ cartState, setCart }}>
-                <UniqueContext.Provider value={{unique,setUnique}}>
+      <ProductContxt.Provider value={{
+        noOfClicks, setNoOfClicks,
+        cartProduect, setCartProduect,
+        single, setSingleProduct,
+        quantity, setQuantityt,
+        cartState, setCart,
+        url, setUrl,
+        unique, setUnique,
+      }}>
                 <Header />
                   <Routes>
                     <Route path='/'
                       element={
                         <>
-                          <Proudects  />
+                          <Proudects/>
                           <Footer />
                       </>
                     } />
-                  <Route path='/pro' element={<>
+                    <Route path={`/pro/${url}`} element={<>
                     <Product />
                   </>} />
                     
                 </Routes>
-                </UniqueContext.Provider>
-                </Cartcontext.Provider>
-            </QuantityContext.Provider>
-          </ProductPageContext.Provider>
-        </CartProduectContext.Provider>
       </ProductContxt.Provider>
       </div>
   );

@@ -16,13 +16,19 @@
    color: #123026;
    opacity:0.7
  }
- .icon{
+ .icon-div{
     width: 5%;
-    margin: 45px 10px 0 10px;
-    float: right;
+    position: relative;
     cursor: pointer;
    }
- .icon:hover{
+   .icon{
+      font-size: 30px;
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      transform: translate(-50%,50%);
+   }
+ .icon-div:hover{
     color: #123026;
 }
 .image{
@@ -53,6 +59,10 @@ transform: translate(-50%,50%)
    height: 15px;
    justify-content: center;
    align-items: center;
+   position: absolute;
+    top: 20%;
+    right: 30%;
+
 }
 .mainhead{
    background-attachment: fixed;

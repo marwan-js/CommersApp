@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useContext, useState ,createContext, useEffect} from 'react'
-import { ProductContxt, CartProduectContext,Cartcontext,UniqueContext } from '../App'
+import { ProductContxt} from '../App'
 import Cartproduct from './Cartproduct'
 import '../style/Header.css' 
 import '../style/Cart.css'
@@ -11,12 +11,15 @@ import { faShoppingBag, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { NavLink, Route, Routes } from 'react-router-dom'
 import { Header_link } from "../constants"
 
-
 function Cart() {
-  const { noOfClicks,setNoOfClicks } = useContext(ProductContxt);
-  const { cartState, setCart } = useContext(Cartcontext);
-  const { cartProduect, setCartProduect } = useContext(CartProduectContext)
-  const {unique,setUnique} =useContext(UniqueContext)
+  const { noOfClicks, setNoOfClicks,
+    cartProduect, setCartProduect,
+    single, setSingleProduct,
+    quantity, setQuantityt,
+    cartState, setCart,
+    unique, setUnique,
+    url,setUrl} = useContext(ProductContxt);
+
   let total = 0
   const price = cartProduect?.map((i)=>i.price)
   price?.forEach(item=>total+=item)
@@ -29,8 +32,6 @@ function Cart() {
   useEffect(() => {
     setUnique(uniqueProduct);
   }, [cartProduect])
-  console.log(unique)
-  console.log(cartProduect)
   return (
     cartState?<div className='cart'>
       <div className='continer'>
@@ -47,7 +48,8 @@ function Cart() {
              <Cartproduct
               id={i.id} image={i.image} title={i.title} price={i.price}
               quantity={i.quantity} color={i.color}
-              array={unique.indexOf(i)}  />)}
+              array={unique.indexOf(i)} />
+          )}
         </div>
         {noOfClicks ? <FontAwesomeIcon icon={faTrash} className='cart_icon2'
           onClick={() => {
@@ -66,11 +68,13 @@ function Cart() {
   )
 }
 function Header() {
-  const { noOfClicks, setNoOfClicks } = useContext(ProductContxt);
-  const { cartState, setCart } = useContext(Cartcontext);
-  const {unique,setUnique} =useContext(UniqueContext)
-  const { cartProduect, setCartProduect } = useContext(CartProduectContext)
-
+  const { noOfClicks, setNoOfClicks,
+    cartProduect, setCartProduect,
+    single, setSingleProduct,
+    quantity, setQuantityt,
+    cartState, setCart,
+    unique, setUnique,
+    urlId, setId } = useContext(ProductContxt);
   return (
     <>
     <div className='mainhead' >
@@ -89,13 +93,13 @@ function Header() {
             color:'black',
           }} to={e.herf}><p className='Header_link' key={e.id}>{e.link}</p></NavLink>)}
       </div>
-        <div className='icon'>
-        <span className='Header_count'>{noOfClicks}</span>
-          <FontAwesomeIcon icon={faShoppingBag} onClick={() => {
+        <div className='icon-div'onClick={() => {
             setCart(true)
             setCartProduect(unique)
             setNoOfClicks(unique.length)
-          }} />
+          }}>
+        <span className='Header_count'>{noOfClicks}</span>
+          <FontAwesomeIcon className='icon' icon={faShoppingBag}  />
       </div>
       </div>
         <Routes><Route path='/' element={<div className='image'><div>Men</div></div>} /></Routes>
