@@ -65,6 +65,7 @@
     justify-content: space-between;
 }
 .cartProudect{
+    height: 360px;
     overflow-y: auto;
     overflow-x:hidden ;
 }
@@ -86,7 +87,7 @@
 }
 .cart_total{
     margin-top: 5%;
-
+    cursor:auto;
 }
 
 .info{

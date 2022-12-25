@@ -1,39 +1,39 @@
-/* eslint-disable react/jsx-pascal-case */
 import './App.css';
 import { useState ,createContext} from 'react';
 import Header from './components/Header'
-import Proudects from './components/Products';
+import Products from './components/Products';
 import Footer from './components/Footer';
-import Product from './components/SingleProduct';
-import {  Route, Routes,  } from 'react-router-dom';
+import Product from './components/Product';
+import {  Route, Routes } from 'react-router-dom';
 export const ProductContxt = createContext()
-function App() {
-  const [noOfClicks,setNoOfClicks] = useState(0)
-  const [cartProduect, setCartProduect] = useState([])
-  const [single, setSingleProduct] = useState([])
-  const [quantity, setQuantityt] = useState(1)
-  const [cartState, setCart] = useState(false)
-  const [unique, setUnique] = useState([])
-  const [url, setUrl] = useState()
-  console.log(url)
 
+function App() {
+  const [noOfCartItems, setNoOfCartItems] = useState(0)
+  const [cartProduct, setCartProduct] = useState([])
+  const [single, setSingleProduct] = useState([])
+  const [cartState, setCart] = useState(false)
+  const [isProductUnique, setIsProductUnique] = useState([])
+  const [url, setUrl] = useState()
+  const [products, setProducts] = useState()
+
+  
   return ( 
     <div className="App" >
       <ProductContxt.Provider value={{
-        noOfClicks, setNoOfClicks,
-        cartProduect, setCartProduect,
+        noOfCartItems, setNoOfCartItems,
+        cartProduct, setCartProduct,
         single, setSingleProduct,
-        quantity, setQuantityt,
         cartState, setCart,
         url, setUrl,
-        unique, setUnique,
+        isProductUnique, setIsProductUnique,
+        products, setProducts
       }}>
                 <Header />
                   <Routes>
                     <Route path='/'
                       element={
                         <>
-                          <Proudects/>
+                          <Products/>
                           <Footer />
                       </>
                     } />
