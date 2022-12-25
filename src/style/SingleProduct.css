@@ -1,0 +1,100 @@
+.single {
+  padding: 70px;
+}
+.single .single-container {
+  display: flex;
+}
+.single .single-container .img-div {
+  width: 40%;
+  margin-top: 0px;
+}
+.single .single-container .img-div .color {
+  background-color: black;
+  width: 400px;
+  height: 30px;
+  display: block;
+  margin-bottom: 60px;
+  border: solid 1px black;
+  border-radius: 12px;
+}
+.single .single-container .img-div img {
+  width: 400px;
+}
+.single .single-container .info-div {
+  width: 60%;
+}
+.single .single-container .info-div .end-div {
+  display: flex;
+  align-items: center;
+  margin: 30px auto auto auto;
+  justify-content: space-between;
+}
+.single .single-container .info-div .end-div .btn2 {
+  align-self: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background-color: #123026;
+  width: 60%;
+  font-size: 20px;
+  cursor: pointer;
+}
+.single .single-container .info-div .end-div .countcontiner {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+  border: solid 3px black;
+  height: 45px;
+  font-size: 25px;
+}
+.single .single-container .info-div .end-div .countcontiner .increase {
+  cursor: pointer;
+}
+.single .single-container .info-div .end-div .countcontiner .decrease {
+  cursor: pointer;
+}
+.single .single-container .info-div .end-div .countcontiner .count {
+  font-size: 30px;
+}
+.single .single-container .info-div .pick {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.single .single-container .info-div .pick .selected {
+  border: solid 3px #123026;
+}
+.single .single-container .info-div .pick .PickColor {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid 1px black;
+}
+.single .single-container .info-div .pick .PickColor:hover {
+  opacity: 0.7;
+}
+.single .single-container .info-div .opti {
+  font-size: 20px;
+}
+.single .single-container .info-div h1 {
+  color: #123026;
+  font-size: 40px;
+}
+.single .single-container .info-div .description {
+  font-size: 15px;
+}
+.single .single-container .info-div .price {
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+.single .single-container .info-div .rate {
+  display: block;
+  color: goldenrod;
+  font-size: 30px;
+}
+.single .single-container .info-div .count {
+  display: block;
+  font-size: 15px;
+}/*# sourceMappingURL=SingleProduct.css.map */
