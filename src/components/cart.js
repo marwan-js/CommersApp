@@ -27,6 +27,7 @@ function Cart() {
     setIsProductUnique(uniqueProduct);
   }, [cartProduct, setCartProduct, setIsProductUnique]);
 
+  console.log(cartProduct) 
 
   useEffect(() => {
     setNoOfCartItems(isProductUnique.length);
@@ -67,6 +68,7 @@ function Cart() {
                 price={product.price}
                 color={product.color}
                 array={isProductUnique.indexOf(product)}
+                count={product.count}
               />
             ))}
           </div>

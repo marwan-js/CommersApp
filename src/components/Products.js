@@ -27,6 +27,12 @@ function Proudects() {
       .catch((err) => setProducts([]));
   }, [setProducts]);
 
+
+  if (products) { for (let i = 0; i <= 19; i++){
+    products[i]['quantity'] = 1;
+  }}
+
+
   const Products = products?.map((product) => (
     <div
       key={product.id}
@@ -79,6 +85,9 @@ function Proudects() {
         >
           Add to cart
         </button>
+        <p>+</p>
+        <p>{}</p>
+        <p></p>
       </div>
     </div>
   ));

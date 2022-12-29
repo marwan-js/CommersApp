@@ -15,8 +15,10 @@ function App() {
   const [isProductUnique, setIsProductUnique] = useState([])
   const [url, setUrl] = useState()
   const [products, setProducts] = useState()
+  const [count,setCount] = useState(1)
 
-  
+
+
   return ( 
     <div className="App" >
       <ProductContxt.Provider value={{
@@ -26,7 +28,8 @@ function App() {
         cartState, setCart,
         url, setUrl,
         isProductUnique, setIsProductUnique,
-        products, setProducts
+        products, setProducts,
+        count, setCount
       }}>
                 <Header />
                   <Routes>

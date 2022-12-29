@@ -11,10 +11,11 @@ function Product() {
     url,
     setCartProduct,
     cartProduct,
+    count,
+    setCount
   } = useContext(ProductContxt);
 
   const [pickColor, setPickColor] = useState("black");
-
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -22,12 +23,14 @@ function Product() {
   useEffect(() => {
     setNoOfCartItems(isProductUnique.length);
   }, [isProductUnique.length, setNoOfCartItems]);
+  
 
   function increase() {
+    setCount(e=>e+1)
   }
 
   function decrease() {
-    
+    setCount(e=>e-1)
   }
 
   function addProducTtoCart() {
@@ -90,7 +93,7 @@ function Product() {
               <span onClick={increase} className="increase">
                 +
               </span>
-              <span className="count">{}</span>
+              <span className="count">{count}</span>
               <span onClick={decrease} className="decrease">
                 -
               </span>
@@ -101,7 +104,7 @@ function Product() {
                 addProducTtoCart();
               }}
             >
-              Add to Cart
+              Add to Cart mm
             </button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext,useState } from "react";
 import "../style/Cart.css";
 import { ProductContxt } from "../App";
 
@@ -10,21 +10,18 @@ function CartProduct({
   color,
   array,
 }) {
-  const [count, setCount] = useState();
-  const { isProductUnique, setNoOfCartItems } = useContext(ProductContxt);
+  const { isProductUnique, setNoOfCartItems, count } = useContext(ProductContxt);
+  
+  console.log(array)
+  
+  const [quant, setQuant] = useState(count);
 
   function decreaseQuantity() {
-    setCount((count) => {
-      if (count > 1) {
-        return count - 1;
-      } else {
-        return 1;
-      }
-    });
+
   }
 
   function increaseQuantity() {
-    setCount((e) => e + 1);
+
   }
 
   function deleteProduct() {
@@ -46,7 +43,7 @@ function CartProduct({
           <p style={{ cursor: "pointer" }} onClick={increaseQuantity}>
             +
           </p>
-          <p>{count}</p>
+          <p>{quant}</p>
           <p style={{ cursor: "pointer" }} onClick={decreaseQuantity}>
             -
           </p>
