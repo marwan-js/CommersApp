@@ -16,7 +16,7 @@ function Proudects() {
   } = useContext(ProductContxt);
 
   const [pickColor] = useState("black");
-
+  const [tooltipStyle,setTooltipStyle] = useState({})
   // Get Products Api
   useEffect(() => {
     axios
@@ -32,6 +32,9 @@ function Proudects() {
     products[i]['quantity'] = 1;
   }}
 
+  let style = {}
+
+  console.log(style)
 
   const Products = products?.map((product) => (
     <div
@@ -56,6 +59,7 @@ function Proudects() {
         <span className="pro_count">{product.rating.count} Rating</span>
         <h3 className="pro_title">{product.title}</h3>
         <span className="pro_price">${product.price}</span>
+        <div className="btn-contain">
         <NavLink
           to={`/pro/${url}`}
           style={{
@@ -63,10 +67,13 @@ function Proudects() {
             color: "black",
           }}
         >
-          <button className="pro_btn">Go to product</button>
-        </NavLink>
+        <button className="pro_btn">Go to product</button>
+          </NavLink>
+          <div className="tooltip-contain">
+        <p className="tooltip">The default color of this product when added to the cart will be black, you can change the color from the cart.</p>
         <button
-          className="pro_btn"
+              className="pro_btn"
+              style={{ width:"100%"}}
           onClick={() => {
             setCartProduct((prev) => [
               ...prev,
@@ -81,13 +88,16 @@ function Proudects() {
               },
             ]);
             setNoOfCartItems(isProductUnique.length);
-          }}
+            style = { display: "none" }
+            }}
+            onMouseEnter={() => {
+              style = { display: "none" }
+            }}
         >
           Add to cart
-        </button>
-        <p>+</p>
-        <p>{}</p>
-        <p></p>
+            </button>
+        </div>
+        </div>
       </div>
     </div>
   ));

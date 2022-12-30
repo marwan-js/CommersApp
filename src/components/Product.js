@@ -104,7 +104,7 @@ function Product() {
                 addProducTtoCart();
               }}
             >
-              Add to Cart mm
+              Add to Cart
             </button>
           </div>
         </div>
