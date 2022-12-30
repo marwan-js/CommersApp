@@ -16,7 +16,6 @@ function Proudects() {
   } = useContext(ProductContxt);
 
   const [pickColor] = useState("black");
-  const [tooltipStyle,setTooltipStyle] = useState({})
   // Get Products Api
   useEffect(() => {
     axios
