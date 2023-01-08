@@ -27,13 +27,15 @@ function Proudects() {
   }, [setProducts]);
 
 
-  if (products) { for (let i = 0; i <= 19; i++){
-    products[i]['quantity'] = 1;
-  }}
+  if (products) {
+    for (let i = 0; i <= 19; i++) {
+      products[i]['quantity'] = 1;
+    }
+  }
+  
 
-  let style = {}
+  
 
-  console.log(style)
 
   const Products = products?.map((product) => (
     <div
@@ -69,7 +71,7 @@ function Proudects() {
         <button className="pro_btn">Go to product</button>
           </NavLink>
           <div className="tooltip-contain">
-        <p className="tooltip">The default color of this product when added to the cart will be black, you can change the color from the cart.</p>
+            
         <button
               className="pro_btn"
               style={{ width:"100%"}}
@@ -78,23 +80,25 @@ function Proudects() {
               ...prev,
               {
                 id: product.id,
-                image: product.image,
-                description: product.description,
-                rating: product.rating,
                 title: product.title,
                 price: product.price,
+                description: product.description,
+                category: product.category,
+                image: product.image,
+                quantity: product.quantity,
+                rating: product.rating,
                 color: pickColor,
               },
             ]);
             setNoOfCartItems(isProductUnique.length);
-            style = { display: "none" }
-            }}
-            onMouseEnter={() => {
-              style = { display: "none" }
             }}
         >
           Add to cart
             </button>
+          <p className="tooltip">The default color of this
+        product when added to the cart will be black,
+        you can change the color from the cart.
+          </p>
         </div>
         </div>
       </div>

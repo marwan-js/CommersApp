@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect,useState } from "react";
 import { ProductContxt } from "../App";
 import Cartproduct from "./Cartproduct";
 import "../style/Header.css";
 import "../style/Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 
 function Cart() {
   const {
@@ -18,6 +18,8 @@ function Cart() {
     setNoOfCartItems,
   } = useContext(ProductContxt);
 
+  const [showTooltip,setShowTooltip] = useState(false)
+
   useEffect(() => {
     let uniqueProduct = cartProduct
       ?.map((e) => e["id"])
@@ -27,11 +29,11 @@ function Cart() {
     setIsProductUnique(uniqueProduct);
   }, [cartProduct, setCartProduct, setIsProductUnique]);
 
-  console.log(cartProduct) 
 
   useEffect(() => {
     setNoOfCartItems(isProductUnique.length);
   }, [cartProduct.length, isProductUnique.length, setNoOfCartItems]);
+
 
   let close = () => {
     setCart(false);
@@ -68,17 +70,30 @@ function Cart() {
                 price={product.price}
                 color={product.color}
                 array={isProductUnique.indexOf(product)}
-                count={product.count}
+                category={product.category}
+                quantity={product.quantity}
               />
             ))}
           </div>
         ) : null}
         {noOfCartItems ? (
-          <FontAwesomeIcon
-            icon={faTrash}
-            className="cart_icon2"
-            onClick={deleteAllProducts}
-          />
+          <>
+            {showTooltip?<div className="tooltip-cart2">
+              <p>Are you sure you want to delete all cart </p>
+              <button className="btn-1"
+                onClick={deleteAllProducts}
+              >Delete</button>
+          <button className="btn-2"
+            onClick={() => {
+              setShowTooltip(false)
+            }}
+          >Cancel</button></div>:null}
+            <p className="del" onClick={() => {
+              setShowTooltip(true)
+            }}>
+          Delete
+        </p>
+        </>
         ) : null}
         {noOfCartItems === 0 ? (
           <p className="cart_p2">Your cart is embty</p>
@@ -91,7 +106,10 @@ function Cart() {
         ) : null}
         {noOfCartItems ? <button className="cart_btn2">Checkout</button> : null}
       </div>
-      <div className="layaout" onClick={close}></div>
+      <div className="layaout" onClick={() => {
+        close()
+        setShowTooltip(false)
+      }}></div>
     </div>
   ) : null;
 }

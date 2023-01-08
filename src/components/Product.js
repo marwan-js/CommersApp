@@ -10,10 +10,11 @@ function Product() {
     products,
     url,
     setCartProduct,
-    cartProduct,
-    count,
-    setCount
+    setNum
   } = useContext(ProductContxt);
+  const [count, setCount] = useState(1)
+
+
 
   const [pickColor, setPickColor] = useState("black");
   useEffect(() => {
@@ -23,14 +24,22 @@ function Product() {
   useEffect(() => {
     setNoOfCartItems(isProductUnique.length);
   }, [isProductUnique.length, setNoOfCartItems]);
-  
+
+
 
   function increase() {
     setCount(e=>e+1)
   }
 
   function decrease() {
-    setCount(e=>e-1)
+    setCount(e => {
+      if (e>1) {
+        return e-1
+      } else {
+        window.alert("You cant' make the quantity 0 ")
+        return 1
+      }
+    })
   }
 
   function addProducTtoCart() {
@@ -41,14 +50,15 @@ function Product() {
         image: products[url ? url - 1 : 1].image,
         title: products[url ? url - 1 : 1].title,
         price: products[url ? url - 1 : 1].price,
+        quantity: count,
         color: pickColor,
       },
     ]);
     setNoOfCartItems(isProductUnique.length);
+    setNum(count)
   }
 
-  console.log(cartProduct);
-  console.log(isProductUnique);
+
 
   return (
     <div className="single">

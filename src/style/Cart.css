@@ -65,25 +65,33 @@
     justify-content: space-between;
 }
 .cartProudect{
-    height: 360px;
+    height: 60vh;
     overflow-y: auto;
     overflow-x:hidden ;
+    width: 100%;
 }
 .cartProudect_dev{
     display: flex;
     margin: 25px 0 25px;
 }
+
 .cartProudect_h3{
-    font-size: 13px;
+    font-size: 15px;
+    text-align: start;
+    width: 90%;
 }
 .cartProudect_p{
-    font-size: 12px;
+    font-size: 16px;
+    margin-right: 20%;
 }
 .cart_icon2{
-    margin-top: 25px;
+    color: rgb(58, 56, 56);
+    margin-left: 10%;
+    margin-right: 5%;
+    cursor: pointer;
 }
 .cart_icon2:hover{
-    color: rgb(255, 32, 32);
+    color: rgb(251, 12, 12);
 }
 .cart_total{
     margin-top: 5%;
@@ -95,13 +103,14 @@
     align-items: baseline;
     margin-left: 5%;
     flex-direction: column;
+    width: 100%;
 }
 .count2{
     display: flex;
-    width: 50%;
+    width: 80%;
     justify-content: space-around;
     align-items: center;
-    border: solid 3px black;
+    border: solid 1.5px black;
     height: 35px;
     font-size: 20px;
     margin: 20px 0 20px 0;
@@ -118,6 +127,129 @@
     margin-left: 10px;
     border: solid 1px black;
 }
+.del{
+    cursor: pointer;
+}
 .del:hover{
     color:red;
+}
+.cart-img{
+    width: 20%;
+    height: 25%;
+    margin: auto 5px auto 5px;
+}
+.price-color-contain{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.count-trash-contain{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.tooltip-cart1{
+    border: 1px solid black;
+    display: block;
+    padding: 5px;
+    background-color: #123026;
+    border-radius: 6px;
+}
+.tooltip-cart1 p{
+    color: aliceblue;
+    font-size: small;
+}
+.tooltip-cart1 .btn-1{
+    margin-right: 3px;
+    background-color:coral;
+    border: none;
+    border-radius: 6px;
+    padding: 7px;
+    cursor: pointer;
+    color: white;
+}
+.tooltip-cart1 .btn-2{
+    margin-left: 3px;
+    background-color: coral;
+    border: none;
+    border-radius: 6px;
+    padding: 7px;
+    cursor: pointer;
+    color: white;
+}
+.tooltip-cart2{
+    border: 1px solid black;
+    display: block;
+    width: 30%;
+    padding: 5px;
+    position: fixed;
+    background-color: #123026;
+    top: 57%;   
+    right:35px;
+    border-radius: 6px;
+}
+.tooltip-cart2 p{
+    color: white;
+}
+.tooltip-cart2::after{
+    content: '';
+    background-color: black;
+    position: absolute;
+    border-bottom: 7px  solid white;
+    border-top: 7px  solid #123026;
+    border-right: 7px  solid white;
+    border-left: 7px  solid white;
+    top: 108%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.tooltip-cart2 .btn-1{
+    margin-right: 3px;
+    background-color:coral;
+    border: none;
+    border-radius: 6px;
+    padding: 7px;
+    cursor: pointer;
+    color: white;
+}
+.tooltip-cart2 .btn-2{
+    margin-left: 3px;
+    background-color: coral;
+    border: none;
+    border-radius: 6px;
+    padding: 7px;
+    cursor: pointer;
+    color: white;
+}
+.colorOptions{
+    background-color: rgba(167, 167, 167, 0.561);
+    text-align: left;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.openColorOptions{
+    font-size: 8px;
+    font-weight: bolder;
+    margin-left: 12px;
+    cursor: pointer;
+    position: relative;
+    bottom: 17%;
+    left: 75%;
+}
+.colorLi{
+    width: 20px;
+    height: 10px;
+    margin: 3px;
+    cursor: pointer;
+}
+.closeColorOptions{
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100%;
+}
+.colorContain{
+    position: relative;
+    bottom: 13%;
+    left: 75%;
 }

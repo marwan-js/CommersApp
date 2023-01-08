@@ -15,7 +15,7 @@ function App() {
   const [isProductUnique, setIsProductUnique] = useState([])
   const [url, setUrl] = useState()
   const [products, setProducts] = useState()
-  const [count,setCount] = useState(1)
+  const [num, setNum] = useState(1)
 
 
 
@@ -29,7 +29,7 @@ function App() {
         url, setUrl,
         isProductUnique, setIsProductUnique,
         products, setProducts,
-        count, setCount
+        num,setNum
       }}>
                 <Header />
                   <Routes>
