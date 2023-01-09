@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { ProductContxt } from "../App";
 import "../style/SingleProduct.css";
 import { colors } from "../constants";
+import { NavLink } from "react-router-dom";
 
 function Product() {
   const {
@@ -10,13 +11,11 @@ function Product() {
     products,
     url,
     setCartProduct,
-    setNum
+    setProducts,
   } = useContext(ProductContxt);
-  const [count, setCount] = useState(1)
 
+  const [showTooltip, setShowTooltip] = useState(false);
 
-
-  const [pickColor, setPickColor] = useState("black");
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -24,23 +23,6 @@ function Product() {
   useEffect(() => {
     setNoOfCartItems(isProductUnique.length);
   }, [isProductUnique.length, setNoOfCartItems]);
-
-
-
-  function increase() {
-    setCount(e=>e+1)
-  }
-
-  function decrease() {
-    setCount(e => {
-      if (e>1) {
-        return e-1
-      } else {
-        window.alert("You cant' make the quantity 0 ")
-        return 1
-      }
-    })
-  }
 
   function addProducTtoCart() {
     setCartProduct((prev) => [
@@ -50,25 +32,51 @@ function Product() {
         image: products[url ? url - 1 : 1].image,
         title: products[url ? url - 1 : 1].title,
         price: products[url ? url - 1 : 1].price,
-        quantity: count,
-        color: pickColor,
+        quantity: products[url ? url - 1 : 1].quantity,
+        color: products[url ? url - 1 : 1].color,
       },
     ]);
     setNoOfCartItems(isProductUnique.length);
-    setNum(count)
   }
 
-
+  function decrease() {
+    if (products[url ? url - 1 : 1].quantity > 1) {
+      setProducts((product) =>
+        product.map((item) =>
+          products[url ? url - 1 : 1].id === item.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
+    } else {
+      setShowTooltip(true);
+      return 1;
+    }
+  }
+  function increase() {
+    setProducts((product) =>
+      product.map((item) =>
+        products[url ? url - 1 : 1].id === item.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  }
 
   return (
     <div className="single">
-      <div key={products[url ? url - 1 : 1].id} className="single-container"
+      <div
+        key={products[url ? url - 1 : 1].id}
+        className="single-container"
         onMouseEnter={() => {
           setCartProduct(isProductUnique);
         }}
       >
         <div className="img-div">
-          <span className="color" style={{ backgroundColor: pickColor }}></span>
+          <span
+            className="color"
+            style={{ backgroundColor: products[url ? url - 1 : 1].color }}
+          ></span>
           <img src={products[url ? url - 1 : 1].image} alt="no" />
         </div>
         <div className="info-div">
@@ -85,26 +93,54 @@ function Product() {
           </span>
           <p className="opti">Colors</p>
           <div className="pick">
-            {colors.map((color) => (
+            {colors.map((color2) => (
               <p
                 id="pickcolor"
                 className="PickColor"
                 style={{
-                  backgroundColor: color,
+                  backgroundColor: color2,
                 }}
                 onClick={() => {
-                  setPickColor(color);
+                  setProducts((product) =>
+                    product.map((item) =>
+                      products[url ? url - 1 : 1].id === item.id
+                        ? { ...item, color: (item.color = color2) }
+                        : item
+                    )
+                  );
                 }}
               ></p>
             ))}
           </div>
           <div className="end-div">
+            {showTooltip ? (
+              <div className="tooltip-product">
+                <p>
+                  You can’t have a quantity of zero,
+                  <br />
+                  Are you sure you don't want to add this product to your cart
+                </p>
+                <NavLink to={"/"}>
+                  <button className="btn-1">Back to home bage</button>
+                </NavLink>
+                <button
+                  className="btn-2"
+                  onClick={() => {
+                    setShowTooltip(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : null}
             <div className="countcontiner">
-              <span onClick={increase} className="increase">
+              <span onClick={() => increase()} className="increase">
                 +
               </span>
-              <span className="count">{count}</span>
-              <span onClick={decrease} className="decrease">
+              <span className="count">
+                {products[url ? url - 1 : 1].quantity}
+              </span>
+              <span onClick={() => decrease()} className="decrease">
                 -
               </span>
             </div>

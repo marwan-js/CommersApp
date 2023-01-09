@@ -28,6 +28,50 @@
   align-items: center;
   margin: 30px auto auto auto;
   justify-content: space-between;
+  position: relative;
+}
+.single .single-container .info-div .end-div .tooltip-product {
+  border-radius: 8px;
+  position: absolute;
+  background-color: #123026;
+  width: 60%;
+  right: 45%;
+  bottom: 150%;
+  padding: 20px;
+  text-align: center;
+  line-height: 22px;
+}
+.single .single-container .info-div .end-div .tooltip-product p {
+  color: white;
+}
+.single .single-container .info-div .end-div .tooltip-product .btn-1 {
+  cursor: pointer;
+  background-color: coral;
+  margin-right: 3px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+.single .single-container .info-div .end-div .tooltip-product .btn-2 {
+  cursor: pointer;
+  background-color: coral;
+  margin-left: 3px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+.single .single-container .info-div .end-div .tooltip-product::after {
+  content: "";
+  background-color: black;
+  position: absolute;
+  border-top: 14px solid #123026;
+  border-right: 14px solid white;
+  border-left: 14px solid white;
+  top: 103%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .single .single-container .info-div .end-div .btn2 {
   align-self: center;

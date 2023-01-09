@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { ProductContxt } from "../App";
 import axios from "axios";
 import "../style/Products.css";
@@ -15,7 +15,7 @@ function Proudects() {
     setProducts,
   } = useContext(ProductContxt);
 
-  const [pickColor] = useState("black");
+
   // Get Products Api
   useEffect(() => {
     axios
@@ -26,16 +26,14 @@ function Proudects() {
       .catch((err) => setProducts([]));
   }, [setProducts]);
 
-
   if (products) {
     for (let i = 0; i <= 19; i++) {
-      products[i]['quantity'] = 1;
+      products[i]["quantity"] = 1;
+    }
+    for (let i = 0; i <= 19; i++) {
+      products[i]["color"] = "black";
     }
   }
-  
-
-  
-
 
   const Products = products?.map((product) => (
     <div
@@ -44,6 +42,7 @@ function Proudects() {
       onMouseEnter={() => {
         setUrl(product.id);
         setCartProduct(isProductUnique);
+        console.log(product.quantity);
       }}
     >
       <NavLink
@@ -61,45 +60,44 @@ function Proudects() {
         <h3 className="pro_title">{product.title}</h3>
         <span className="pro_price">${product.price}</span>
         <div className="btn-contain">
-        <NavLink
-          to={`/pro/${url}`}
-          style={{
-            textDecoration: "none",
-            color: "black",
-          }}
-        >
-        <button className="pro_btn">Go to product</button>
+          <NavLink
+            to={`/pro/${url}`}
+            style={{
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
+            <button className="pro_btn">Go to product</button>
           </NavLink>
           <div className="tooltip-contain">
-            
-        <button
+            <button
               className="pro_btn"
-              style={{ width:"100%"}}
-          onClick={() => {
-            setCartProduct((prev) => [
-              ...prev,
-              {
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                description: product.description,
-                category: product.category,
-                image: product.image,
-                quantity: product.quantity,
-                rating: product.rating,
-                color: pickColor,
-              },
-            ]);
-            setNoOfCartItems(isProductUnique.length);
-            }}
-        >
-          Add to cart
+              style={{ width: "100%" }}
+              onClick={() => {
+                setCartProduct((prev) => [
+                  ...prev,
+                  {
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    description: product.description,
+                    category: product.category,
+                    image: product.image,
+                    rating: product.rating,
+                    color: product.color,
+                    quantity: product.quantity,
+                  },
+                ]);
+                setNoOfCartItems(isProductUnique.length);
+              }}
+            >
+              Add to cart
             </button>
-          <p className="tooltip">The default color of this
-        product when added to the cart will be black,
-        you can change the color from the cart.
-          </p>
-        </div>
+            <p className="tooltip">
+              The default color of this product when added to the cart will be
+              black, you can change the color from the cart.
+            </p>
+          </div>
         </div>
       </div>
     </div>
