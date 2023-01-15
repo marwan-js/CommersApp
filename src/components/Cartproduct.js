@@ -72,29 +72,30 @@ function CartProduct({ id, image, title, price, color, array, quantity }) {
             <span style={{ display: "inline", fontSize: "20px" }}>Color:</span>
             <p className="colorp" style={{ backgroundColor: color }}></p>
           </div>
-        </div>
-        {showColorsList ? (
-          <div
-            className="openColorOptions"
-            onClick={() => {
-              setShowColorsList(false);
-            }}
-          >
-            \/
-          </div>
-        ) : (
-          <div className="colorContain">
+          {showColorsList ? (
             <div
-              className="closeColorOptions"
+              className="openColorOptions"
               onClick={() => {
-                setShowColorsList(true);
+                setShowColorsList(false);
               }}
             >
-              ^
+              \/
             </div>
-            <div className="colorOptions">{colorOptions}</div>
-          </div>
-        )}
+          ) : (
+            <div className="colorContain">
+              <div
+                className="closeColorOptions"
+                onClick={() => {
+                  setShowColorsList(true);
+                }}
+              >
+                ^
+              </div>
+              <div className="colorOptions">{colorOptions}</div>
+            </div>
+          )}
+        </div>
+
         {showTooltip ? (
           <div className="tooltip-cart1">
             <p>

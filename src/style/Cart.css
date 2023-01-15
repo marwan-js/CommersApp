@@ -14,7 +14,7 @@
   right: 0;
   z-index: 100;
   background-color: white;
-  width: 35%;
+  width: 475px;
   padding: 15px 30px 30% 30px;
   text-align: center;
 }
@@ -64,7 +64,7 @@
   justify-content: space-between;
 }
 .cartProudect {
-  height: 60vh;
+  height: 46vh;
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
@@ -128,6 +128,7 @@
 }
 .del {
   cursor: pointer;
+  margin-top: 5vh;
 }
 .del:hover {
   color: red;
@@ -135,12 +136,13 @@
 .cart-img {
   width: 20%;
   height: 25%;
-  margin: auto 5px auto 5px;
+  margin: 2px 5px auto 5px;
 }
 .price-color-contain {
   display: flex;
   width: 100%;
   align-items: center;
+  height: 55px;
 }
 .count-trash-contain {
   display: flex;
@@ -156,6 +158,7 @@
 }
 .tooltip-cart1 p {
   color: aliceblue;
+  width: 280px;
   font-size: small;
 }
 .tooltip-cart1 .btn-1 {
@@ -221,7 +224,7 @@
   color: white;
 }
 .colorOptions {
-  background-color: rgba(167, 167, 167, 0.561);
+  background-color: rgb(52 47 47);
   text-align: left;
   padding: 5px;
   display: grid;
@@ -230,11 +233,8 @@
 .openColorOptions {
   font-size: 8px;
   font-weight: bolder;
-  margin-left: 12px;
+  margin-left: 25px;
   cursor: pointer;
-  position: relative;
-  bottom: 17%;
-  left: 75%;
 }
 .colorLi {
   width: 20px;
@@ -249,6 +249,6 @@
 }
 .colorContain {
   position: relative;
-  bottom: 13%;
-  left: 75%;
+    top: 96%;
+    margin-left: 2px;
 }

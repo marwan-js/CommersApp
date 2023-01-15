@@ -12,9 +12,9 @@ function Proudects() {
     url,
     setUrl,
     products,
+    cartProduct,
     setProducts,
   } = useContext(ProductContxt);
-
 
   // Get Products Api
   useEffect(() => {
@@ -35,6 +35,30 @@ function Proudects() {
     }
   }
 
+  function addProducTtoCart() {
+    if (cartProduct) {
+      setCartProduct((product) =>
+        product?.map((item) =>
+          products[url ? url - 1 : 1].id === item.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    }
+    setCartProduct((prev) => [
+      ...prev,
+      {
+        id: products[url ? url - 1 : 1].id,
+        image: products[url ? url - 1 : 1].image,
+        title: products[url ? url - 1 : 1].title,
+        price: products[url ? url - 1 : 1].price,
+        quantity: products[url ? url - 1 : 1].quantity,
+        color: products[url ? url - 1 : 1].color,
+      },
+    ]);
+    setNoOfCartItems(isProductUnique.length);
+  }
+
   const Products = products?.map((product) => (
     <div
       key={product.id}
@@ -42,7 +66,6 @@ function Proudects() {
       onMouseEnter={() => {
         setUrl(product.id);
         setCartProduct(isProductUnique);
-        console.log(product.quantity);
       }}
     >
       <NavLink
@@ -73,23 +96,7 @@ function Proudects() {
             <button
               className="pro_btn"
               style={{ width: "100%" }}
-              onClick={() => {
-                setCartProduct((prev) => [
-                  ...prev,
-                  {
-                    id: product.id,
-                    title: product.title,
-                    price: product.price,
-                    description: product.description,
-                    category: product.category,
-                    image: product.image,
-                    rating: product.rating,
-                    color: product.color,
-                    quantity: product.quantity,
-                  },
-                ]);
-                setNoOfCartItems(isProductUnique.length);
-              }}
+              onClick={() => addProducTtoCart()}
             >
               Add to cart
             </button>

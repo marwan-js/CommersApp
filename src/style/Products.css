@@ -16,7 +16,6 @@
 .pro {
   display: flex;
   align-items: center;
-  text-align: center;
   flex-direction: column;
   margin: 20px 10px 10px 10px;
   height: 550px;
@@ -44,11 +43,11 @@
   content: "";
   background-color: black;
   position: absolute;
-  border-bottom: 10px solid white;
+  /* border-bottom: 10px solid white; */
   border-top: 10px solid yellow;
   border-right: 10px solid white;
   border-left: 10px solid white;
-  bottom: -24%;
+  bottom: -15px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -67,15 +66,16 @@
   border: none;
   color: white;
   background-color: #123026;
-  width: 40%;
   font-size: 20px;
   cursor: pointer;
+  width: 50%;
 }
 
 .btn-contain {
   width: 100%;
   position: absolute;
   bottom: 0;
+  margin: auto;
 }
 .tooltip-contain {
   width: 40%;

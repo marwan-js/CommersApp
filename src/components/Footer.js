@@ -55,7 +55,9 @@ function Footer() {
         <h1>{getintouch}</h1>
         <p>
           Get In TouchCall us at 1 - 800 - 475 - 6479 or {<br />} email {<br />}{" "}
-          marwanamgad19@gmail.com
+          marwanamgad19
+          {<br />}
+          @gmail.com
         </p>
       </div>
     </div>

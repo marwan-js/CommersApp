@@ -5,9 +5,10 @@
     .img-div {
       width: 40%;
       margin-top: 0px;
+      
       .color {
         background-color: black;
-        width: 400px;
+        width: 90%;
         height: 30px;
         display: block;
         margin-bottom: 60px;
@@ -15,11 +16,33 @@
         border-radius: 12px;
       }
       img {
-        width: 400px;
+        width: 90%;
       }
     }
     .info-div {
       width: 60%;
+      .color-contain{
+        display: flex;
+        align-items: center;
+        .opti {
+          font-size: 20px;
+          margin-right: 3px;
+        }
+        .pick {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          .PickColor {
+            width: 6vh;
+            height: 6vh;
+            border-radius: 50%;
+            border: solid 1px black;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
       .end-div {
         display: flex;
         align-items: center;
@@ -99,32 +122,14 @@
           }
         }
       }
-      .pick {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        .selected {
-          border: solid 3px #123026;
-        }
-        .PickColor {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          border: solid 1px black;
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-      }
-      .opti {
-        font-size: 20px;
-      }
+      
       h1 {
         color: #123026;
-        font-size: 40px;
+        font-size: 250%;
+        margin-top: 0%;
       }
       .description {
-        font-size: 15px;
+        font-size: 125%;
       }
       .price {
         margin-bottom: 30px;

@@ -11,6 +11,7 @@ function Product() {
     products,
     url,
     setCartProduct,
+    cartProduct,
     setProducts,
   } = useContext(ProductContxt);
 
@@ -25,6 +26,15 @@ function Product() {
   }, [isProductUnique.length, setNoOfCartItems]);
 
   function addProducTtoCart() {
+    if (cartProduct) {
+      setCartProduct((product) =>
+        product?.map((item) =>
+          products[url ? url - 1 : 1].id === item.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    }
     setCartProduct((prev) => [
       ...prev,
       {
@@ -91,27 +101,30 @@ function Product() {
           <span className="count">
             {products[url ? url - 1 : 1].rating.count} reviews
           </span>
-          <p className="opti">Colors</p>
-          <div className="pick">
-            {colors.map((color2) => (
-              <p
-                id="pickcolor"
-                className="PickColor"
-                style={{
-                  backgroundColor: color2,
-                }}
-                onClick={() => {
-                  setProducts((product) =>
-                    product.map((item) =>
-                      products[url ? url - 1 : 1].id === item.id
-                        ? { ...item, color: (item.color = color2) }
-                        : item
-                    )
-                  );
-                }}
-              ></p>
-            ))}
+          <div className="color-contain">
+            <p className="opti">Colors:</p>
+            <div className="pick">
+              {colors.map((color2) => (
+                <p
+                  id="pickcolor"
+                  className="PickColor"
+                  style={{
+                    backgroundColor: color2,
+                  }}
+                  onClick={() => {
+                    setProducts((product) =>
+                      product.map((item) =>
+                        products[url ? url - 1 : 1].id === item.id
+                          ? { ...item, color: (item.color = color2) }
+                          : item
+                      )
+                    );
+                  }}
+                ></p>
+              ))}
+            </div>
           </div>
+
           <div className="end-div">
             {showTooltip ? (
               <div className="tooltip-product">
