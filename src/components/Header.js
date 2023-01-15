@@ -10,10 +10,12 @@ import Cart from "./cart";
 function Header() {
   const { noOfCartItems, setCart } = useContext(ProductContxt);
 
+  
   function openCart() {
     setCart(true);
   }
 
+ 
   return (
     <>
       <div className="mainhead">

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { ProductContxt } from "../App";
 import axios from "axios";
 import "../style/Products.css";
@@ -12,10 +12,9 @@ function Proudects() {
     url,
     setUrl,
     products,
+    cartProduct,
     setProducts,
   } = useContext(ProductContxt);
-
-  const [pickColor] = useState("black");
 
   // Get Products Api
   useEffect(() => {
@@ -26,6 +25,39 @@ function Proudects() {
       })
       .catch((err) => setProducts([]));
   }, [setProducts]);
+
+  if (products) {
+    for (let i = 0; i <= 19; i++) {
+      products[i]["quantity"] = 1;
+    }
+    for (let i = 0; i <= 19; i++) {
+      products[i]["color"] = "black";
+    }
+  }
+
+  function addProducTtoCart() {
+    if (cartProduct) {
+      setCartProduct((product) =>
+        product?.map((item) =>
+          products[url ? url - 1 : 1].id === item.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    }
+    setCartProduct((prev) => [
+      ...prev,
+      {
+        id: products[url ? url - 1 : 1].id,
+        image: products[url ? url - 1 : 1].image,
+        title: products[url ? url - 1 : 1].title,
+        price: products[url ? url - 1 : 1].price,
+        quantity: products[url ? url - 1 : 1].quantity,
+        color: products[url ? url - 1 : 1].color,
+      },
+    ]);
+    setNoOfCartItems(isProductUnique.length);
+  }
 
   const Products = products?.map((product) => (
     <div
@@ -50,35 +82,30 @@ function Proudects() {
         <span className="pro_count">{product.rating.count} Rating</span>
         <h3 className="pro_title">{product.title}</h3>
         <span className="pro_price">${product.price}</span>
-        <NavLink
-          to={`/pro/${url}`}
-          style={{
-            textDecoration: "none",
-            color: "black",
-          }}
-        >
-          <button className="pro_btn">Go to product</button>
-        </NavLink>
-        <button
-          className="pro_btn"
-          onClick={() => {
-            setCartProduct((prev) => [
-              ...prev,
-              {
-                id: product.id,
-                image: product.image,
-                description: product.description,
-                rating: product.rating,
-                title: product.title,
-                price: product.price,
-                color: pickColor,
-              },
-            ]);
-            setNoOfCartItems(isProductUnique.length);
-          }}
-        >
-          Add to cart
-        </button>
+        <div className="btn-contain">
+          <NavLink
+            to={`/pro/${url}`}
+            style={{
+              textDecoration: "none",
+              color: "black",
+            }}
+          >
+            <button className="pro_btn">Go to product</button>
+          </NavLink>
+          <div className="tooltip-contain">
+            <button
+              className="pro_btn"
+              style={{ width: "100%" }}
+              onClick={() => addProducTtoCart()}
+            >
+              Add to cart
+            </button>
+            <p className="tooltip">
+              The default color of this product when added to the cart will be
+              black, you can change the color from the cart.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   ));

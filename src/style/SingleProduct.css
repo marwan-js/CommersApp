@@ -10,7 +10,7 @@
 }
 .single .single-container .img-div .color {
   background-color: black;
-  width: 400px;
+  width: 90%;
   height: 30px;
   display: block;
   margin-bottom: 60px;
@@ -18,16 +18,82 @@
   border-radius: 12px;
 }
 .single .single-container .img-div img {
-  width: 400px;
+  width: 90%;
 }
 .single .single-container .info-div {
   width: 60%;
+}
+.single .single-container .info-div .color-contain {
+  display: flex;
+  align-items: center;
+}
+.single .single-container .info-div .color-contain .opti {
+  font-size: 20px;
+  margin-right: 3px;
+}
+.single .single-container .info-div .color-contain .pick {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.single .single-container .info-div .color-contain .pick .PickColor {
+  width: 6vh;
+  height: 6vh;
+  border-radius: 50%;
+  border: solid 1px black;
+}
+.single .single-container .info-div .color-contain .pick .PickColor:hover {
+  opacity: 0.7;
 }
 .single .single-container .info-div .end-div {
   display: flex;
   align-items: center;
   margin: 30px auto auto auto;
   justify-content: space-between;
+  position: relative;
+}
+.single .single-container .info-div .end-div .tooltip-product {
+  border-radius: 8px;
+  position: absolute;
+  background-color: #123026;
+  width: 60%;
+  right: 45%;
+  bottom: 150%;
+  padding: 20px;
+  text-align: center;
+  line-height: 22px;
+}
+.single .single-container .info-div .end-div .tooltip-product p {
+  color: white;
+}
+.single .single-container .info-div .end-div .tooltip-product .btn-1 {
+  cursor: pointer;
+  background-color: coral;
+  margin-right: 3px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+.single .single-container .info-div .end-div .tooltip-product .btn-2 {
+  cursor: pointer;
+  background-color: coral;
+  margin-left: 3px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+.single .single-container .info-div .end-div .tooltip-product::after {
+  content: "";
+  background-color: black;
+  position: absolute;
+  border-top: 14px solid #123026;
+  border-right: 14px solid white;
+  border-left: 14px solid white;
+  top: 103%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .single .single-container .info-div .end-div .btn2 {
   align-self: center;
@@ -58,32 +124,13 @@
 .single .single-container .info-div .end-div .countcontiner .count {
   font-size: 30px;
 }
-.single .single-container .info-div .pick {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-.single .single-container .info-div .pick .selected {
-  border: solid 3px #123026;
-}
-.single .single-container .info-div .pick .PickColor {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: solid 1px black;
-}
-.single .single-container .info-div .pick .PickColor:hover {
-  opacity: 0.7;
-}
-.single .single-container .info-div .opti {
-  font-size: 20px;
-}
 .single .single-container .info-div h1 {
   color: #123026;
-  font-size: 40px;
+  font-size: 250%;
+  margin-top: 0%;
 }
 .single .single-container .info-div .description {
-  font-size: 15px;
+  font-size: 125%;
 }
 .single .single-container .info-div .price {
   margin-bottom: 30px;
